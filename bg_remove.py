@@ -4,7 +4,9 @@ from PIL import Image
 from io import BytesIO
 import base64
 
+
 st.set_page_config(layout="wide", page_title="Image Background Remover")
+
 
 st.write("## Remove background from your image")
 st.write(
@@ -35,6 +37,7 @@ def fix_image(upload):
 
 col1, col2 = st.columns(2)
 my_upload = st.sidebar.file_uploader("Upload an image", type=["png", "jpg", "jpeg"])
+
 
 if my_upload is not None:
     fix_image(upload=my_upload)
