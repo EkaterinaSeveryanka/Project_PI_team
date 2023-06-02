@@ -14,6 +14,10 @@ st.write(
 st.sidebar.write("## Upload and download :gear:")
 
 
+name = st.text_input("Enter your name", "")
+st.write(f"Hello, {name}!")
+
+
 # Download the fixed image
 def convert_image(img):
     buf = BytesIO()
