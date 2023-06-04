@@ -3,31 +3,13 @@ from rembg import remove
 from PIL import Image
 from io import BytesIO
 
-
-st.set_page_config(layout="wide", page_title="Image Background Remover")
-
-
-st.write("## Remove background from your image")
-st.write(
-    ":dog: streamlit app :grin:"
-)
-st.sidebar.write("## Upload and download :gear:")
-
-
-name = st.text_input("Enter your name", "")
-st.write(f"Hello, {name}!")
-
-
-# Download the fixed image
 def convert_image(img):
     buf = BytesIO()
     img.save(buf, format="PNG")
     byte_im = buf.getvalue()
     return byte_im
 
-
-def fix_image(upload):
-    image = Image.open(upload)
+def fix_image(image):
     col1.write("Original Image :camera:")
     col1.image(image)
 
@@ -37,12 +19,18 @@ def fix_image(upload):
     st.sidebar.markdown("\n")
     st.sidebar.download_button("Download fixed image", convert_image(fixed), "fixed.png", "image/png")
 
-
+st.set_page_config(layout="wide", page_title="Image Background Remover")
+st.write("## Remove background from your image")
+st.write(":dog: streamlit app :grin:")
+st.sidebar.write("## Upload and download :gear:")
+name = st.text_input("Enter your name", "")
+st.write(f"Hello, {name}!")
 col1, col2 = st.columns(2)
 my_upload = st.sidebar.file_uploader("Upload an image", type=["png", "jpg", "jpeg"])
 
-
 if my_upload is not None:
-    fix_image(upload=my_upload)
+    img = Image.open(my_upload)
+    fix_image(image=img)
 else:
-    fix_image("./zebra.jpg")
+    img = Image.open("./zebra.jpg")
+    fix_image(image=img)
