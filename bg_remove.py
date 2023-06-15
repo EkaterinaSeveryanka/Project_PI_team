@@ -20,6 +20,7 @@ def is_russian(word):
     """Проверяем, что в строке только русские буквы"""
     return bool(re.match("^[А-Яа-яЁё ]+$", word))
 
+
 name = st.text_input("Введите ваше имя", "")
 
 
