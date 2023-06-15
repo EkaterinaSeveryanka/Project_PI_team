@@ -61,5 +61,5 @@ def test_fix_image():
 
     # Тестирование, если изображение не загружено
     fix_image(example_file)
-    downloaded_file = st._get_current_report()._widgets_by_id["sidebar"]._widgets[0]._prop_values["content"]._content.text
+    downloaded_file = st._get_report_ctx().widgets_by_id["sidebar"]._widgets[0].value
     assert example_png == downloaded_file
