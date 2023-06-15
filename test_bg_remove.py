@@ -19,12 +19,12 @@ def convert_image(img):
 
 def fix_image(upload):
     image = Image.open(upload)
-    col1.write("Original Image :camera:")
-    col1.image(image)
+    st.write("Original Image :camera:")
+    st.image(image)
 
     fixed = remove(image)
-    col2.write("Fixed Image :wrench:")
-    col2.image(fixed)
+    st.write("Fixed Image :wrench:")
+    st.image(fixed)
     st.sidebar.markdown("\n")
     st.sidebar.download_button("Download fixed image", convert_image(fixed), "fixed.png", "image/png")
 
