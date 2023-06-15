@@ -31,10 +31,10 @@ def fix_image(upload):
 
 def test_is_russian():
     # Проверяем, что регулярное выражение работает корректно
-    assert is_russian("") == True
-    assert is_russian("Только русские буквы") == True
-    assert is_russian("English letters only") == False
-    assert is_russian("русские буквы и English") == False
+    assert is_russian("") is True
+    assert is_russian("Только русские буквы") is True
+    assert is_russian("English letters only") is False
+    assert is_russian("русские буквы и English") is False
 
 
 def test_convert_image():
