@@ -2,6 +2,7 @@ import streamlit as st
 from rembg import remove
 from PIL import Image
 from io import BytesIO
+import re
 
 
 st.set_page_config(layout="wide", page_title="Image Background Remover")
@@ -14,8 +15,22 @@ st.write(
 st.sidebar.write("## Upload and download :gear:")
 
 
-name = st.text_input("Enter your name", "")
-st.write(f"Hello, {name}!")
+# Ввод имени с проверкой на язык
+def is_russian(word):
+    """Проверяем, что в строке только русские буквы"""
+    return bool(re.match("^[А-Яа-яЁё ]+$", word))
+
+
+name = st.text_input("Введите ваше имя", "")
+
+
+# Проверка на наличие только русских букв
+if is_russian(name):
+    st.write(f"Привет, {name}!")
+    # Ваше приложение
+else:
+    st.warning("Пожалуйста, введите ваше имя, используя только русские буквы и пробелы.")
+    st.stop()  # Запрещает запуск приложения, пока не будет выполнено условие
 
 
 # Download the fixed image
